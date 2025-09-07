@@ -1,48 +1,36 @@
-🪟 Windows 10 QEMU Virtual Machine in Docker Container
+# 🪟 Pre-Installed Windows 10 (or Tiny10) VM in Docker
 
-A lightweight Windows 10 virtual machine running inside a Docker container using QEMU/KVM for optimal performance.
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![QEMU](https://img.shields.io/badge/QEMU-FF6600?style=for-the-badge&logo=qemu&logoColor=white)
+![Windows 10](https://img.shields.io/badge/Windows%2010-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
-Features
+Boot directly into a fully installed **Windows 10** or **Tiny10** VM using Docker and QEMU/KVM. No installation steps required!
 
-🐳 Containerized Windows 10 VM
+---
 
-⚡ KVM-accelerated for near-native performance
+## Features
 
-🌐 Web-based VNC access (port 6082)
+-  **Pre-configured Windows VM** (Pro 22H2 or lightweight Tiny10)
+-  Boots instantly—no setup needed
+-  **VNC access** via browser (port 6082)
+-  **RDP access** (port 2223)
+-  Persistent disk stored in `./vmdata`
 
-🔑 RDP access (port 2223)
+---
 
-💾 Persistent storage volume
+## Prerequisites
 
-Prerequisites
+- Docker installed with **KVM virtualization support**
+- `sudo` access for `/dev/kvm`
+- Recommended setup: **4 GB RAM**, **2+ CPU cores**
 
-Docker installed
+---
 
-KVM support on host machine
+## Installation
 
-sudo privileges (for KVM device access)
+```bash
+git clone https://github.com/ParaNoob123/Windows-10-Preinstalled
+cd Windows-10-Preinstalled
 
-Installation
-# Clone the repository
-git clone https://github.com/ParaNoob123/Windows-10
-cd Windows-10
-
-# Build the Docker image
-docker build -t win10-vm .
-
-# Run the container
-docker run --privileged -p 6082:6082 -p 2223:2223 -v $PWD/vmdata:/data win10-vm
-
-Access
-
-VNC (Browser): http://localhost:6082/vnc.html
-
-RDP Client: localhost:2223
-
-Notes
-
-First boot will launch the Windows 10 installer from the ISO.
-
-After installation, the VM will boot directly from the virtual hard disk.
-
-Your VM disk is stored inside ./vmdata and persists between container runs.
+docker build -t win10-pre .
+docker run --privileged -p 6082:6082 -p 2223:2223 -v $PWD/vmdata:/data win10-pre
