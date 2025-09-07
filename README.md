@@ -29,8 +29,8 @@ Boot directly into a fully installed **Windows 10** or **Tiny10** VM using Docke
 ## Installation
 
 ```bash
-git clone https://github.com/ParaNoob123/Windows-10-Preinstalled
-cd Windows-10-Preinstalled
+git clone https://github.com/ParaNoob123/Windows-10
+cd Windows-10
 
 docker build -t win10-pre .
 docker run --privileged -p 6082:6082 -p 2223:2223 -v $PWD/vmdata:/data win10-pre
